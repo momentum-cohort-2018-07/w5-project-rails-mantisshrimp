@@ -1,5 +1,5 @@
-<h4>breddit</h4>
-session: <%= session[:user_id] %><br>
+<h1>breddit</h1>
+<%= session[:user_id] %><br>
 <% if current_user %>
   <p>logged in as: <%= current_user.username %></p>
   <%= link_to "log out", session_path(session), method: :delete %>
@@ -7,19 +7,24 @@ session: <%= session[:user_id] %><br>
   <%= link_to "register new account", new_user_path %>
   <h5>login</h5>
   <%= form_with url: session_index_path(session), local: true do |form| %>
+<div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+</div>
 
-    <div class="input-block">
-      <%= form.label :username %><br>
-      <%= form.text_field :username %>
-    </div>
+<div class="row">
+  <div class="col-sm-4">
+    <%= form.label :username %>
+  </div>
+  <div class="col-sm-4"><%= form.text_field :username %></div>
+  <div class="col-sm-4">
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+  </div>
+  <div class="col-sm-4">
+  <%= form.submit "log in"%>
+  </div>
+</div>
 
-    <div class="input-block">
-      <%= form.label :password %><br>
-      <%= form.password_field :password %>
-    </div>
-
-    <div class="input-block">
-      <%= form.submit "log in"%>
-    </div>
+    
   <% end %>
 <% end %>
