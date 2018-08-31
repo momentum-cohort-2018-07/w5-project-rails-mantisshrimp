@@ -1,0 +1,19 @@
+<h4>breddit</h4>
+<%= link_to "register new account", new_user_path %>
+<h5>login</h5>
+<%= form_with url: session_index_path, local: true do |form| %>
+
+  <div class="input-block">
+    <%= form.label :username %><br>
+    <%= form.text_field :username %>
+  </div>
+
+  <div class="input-block">
+    <%= form.label :password %><br>
+    <%= form.text_field :password %>
+  </div>
+
+  <div class="input-block">
+    <%= form.submit "log in"%>
+  </div>
+<% end %>
