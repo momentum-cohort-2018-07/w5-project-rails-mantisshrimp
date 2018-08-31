@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2018_08_30_234723) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "posts", force: :cascade do |t| 
+  create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.integer "vote_value"

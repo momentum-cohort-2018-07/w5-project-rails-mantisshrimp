@@ -25,6 +25,7 @@ class PostsController < ApplicationController
 
   # POST /posts
   # POST /posts.json
+
   def create
     @post = Post.new(post_params)
 
@@ -41,6 +42,7 @@ class PostsController < ApplicationController
 
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
+
   def update
     respond_to do |format|
       if @post.update(post_params)
@@ -70,7 +72,8 @@ class PostsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
+    
     def post_params
-      params.fetch(:post, {})
+      params.require(:post).permit(:title, :user_id, :vote_value, :comments)
     end
 end

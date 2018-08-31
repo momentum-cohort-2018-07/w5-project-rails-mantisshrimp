@@ -8,8 +8,7 @@
     <tr>
       <th>Title </th>
       <th>Created by </th>
-      <th>Total votes </th>
-      <th>Description </th>
+      <th>Vote value  </th>
       <th>Comments </th>
       <th colspan="3"></th>
     </tr>
@@ -21,8 +20,6 @@
         <td><%= post.title %></td>
         <td><%= post.user_id %></td> 
         <td><%= post.vote_value %></td> 
-        <td><%= post.description %></td>
-        <td><%= post.comment_text %></td>
         <td><%= link_to 'Show', post %></td>
         <td><%= link_to 'Edit', edit_post_path(post) %></td>
         <td><%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>

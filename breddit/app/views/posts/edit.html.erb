@@ -16,9 +16,25 @@
             <% end %>
         </ul>
     </div>
-<% end %>
+    <% end %>
 
+    <p>
+        <%= form.label :title %><br>
+        <%= form.text_field :title %>
+    </p>
 
+    <p>
+        <%= form.label :description %><br>
+        <%= form.text_area :description %>
+    </p>
+
+    <p>
+        <%= form.submit %>
+    </p>
+
+        <%= link_to 'Back', posts_path %>
+
+    <% end %>
 
 <%= link_to 'Show', @post %> |
 <%= link_to 'Back', posts_path %>
