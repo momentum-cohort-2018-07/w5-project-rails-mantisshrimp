@@ -1,0 +1,31 @@
+<h1>New Account</h1>
+<%= form_with scope: :user, url: users_path, local: true do |form| %>
+
+      <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2 class="error_title">
+            <%= pluralize(@user.errors.count, "error") %> prohibited
+            this account registration:
+          </h2>
+          <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+              <li class="error_message"><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="input-block">
+        <%= form.label :username %><br>
+        <%= form.text_field :username %>
+      </div>
+
+      <div class="input-block">
+        <%= form.label :password %><br>
+        <%= form.password_field :password %>
+      </div>
+
+      <div class="input-block">
+        <%= form.submit %>
+      </div>
+    <% end %>
