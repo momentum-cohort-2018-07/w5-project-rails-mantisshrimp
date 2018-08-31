@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  def register
+  def new
     @user = User.new
   end
 
@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to posts_path
     else
-      render 'register'
+      render 'new'
     end
   end
 
