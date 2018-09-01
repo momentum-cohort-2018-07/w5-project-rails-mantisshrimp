@@ -1,25 +1,51 @@
-<h4>breddit</h4>
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="#">breddit</a>
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a class="nav-link active" href="#">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Posts</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+    </ul>
+</nav>
+
+
+
+
+
 session: <%= session[:user_id] %><br>
 <% if current_user %>
   <p>logged in as: <%= current_user.username %></p>
   <%= link_to "log out", session_path(session), method: :delete %>
 <% else %>
   <%= link_to "register new account", new_user_path %>
-  <h5>login</h5>
+  
+  <h5>Login</h5>
+  
   <%= form_with url: session_index_path(session), local: true do |form| %>
 
-    <div class="input-block">
-      <%= form.label :username %><br>
-      <%= form.text_field :username %>
+  <form class="form-inline" action="/action_page.php">
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input type="username" class="form-control" id="username">
     </div>
 
-    <div class="input-block">
-      <%= form.label :password %><br>
-      <%= form.password_field :password %>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" class="form-control" id="pwd">
     </div>
 
-    <div class="input-block">
-      <%= form.submit "log in"%>
+    <div class="checkbox">
+      <label><input type="checkbox"> Remember me</label>
     </div>
-  <% end %>
+    <button type="submit" class="btn btn-default">Submit</button>
+</form>
+<% end %>
 <% end %>
