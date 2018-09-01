@@ -10,12 +10,17 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @vote = Vote.where(user_id: current_user, post_id: @post.id)[0]
     @post = Post.find(params[:id])
   end
 
   # GET /posts/new
   def new
-    @post = Post.new
+    if current_user
+      @post = Post.new
+    else
+      redirect_to posts_path
+    end
   end
 
   # GET /posts/1/edit
