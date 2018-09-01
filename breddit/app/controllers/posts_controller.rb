@@ -10,6 +10,7 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @vote = Vote.where(user_id: current_user, post_id: @post.id)[0]
     @post = Post.find(params[:id])
   end
 

@@ -10,6 +10,7 @@
       <th>Created by </th>
       <th>URL  </th>
       <th>Comments  </th>
+      <th>Vote Score </th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -21,6 +22,7 @@
         <td><%= User.find(post.user_id).username %></td> 
         <td><%= post.url %></td>
         <td><%= post.comments.length %></td> 
+        <td><%= post.votes.map{|vote| vote.vote_value}.inject(:+) %></td>
         <td><%= link_to 'Show', post %></td>
         <td><%= link_to 'Edit', edit_post_path(post) %></td>
         <td><%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
