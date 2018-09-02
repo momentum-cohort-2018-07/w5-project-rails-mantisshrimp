@@ -10,43 +10,34 @@
 
     <title>breddit</title>
   </head>
+  
   <body>
-    <%= render "header_and_login" %>
+  <%= render "header_and_login" %>
+    
 <p id="notice"><%= notice %></p>
 
+<%= link_to 'New Post', new_post_path %><br>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title </th>
-      <th>Created by </th>
-      <th>URL  </th>
-      <th>Comments  </th>
-      <th>Vote Score </th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="card" style="width: 18rem;">
+<span class="float-left"></span>
+  <% @posts.each do |post| %>
+  <img class="card-img-top" src="https://imgix.ranker.com/user_node_img/76/1512068/original/mantis-shrimp-u1?w=650&q=50&fm=jpg&fit=crop&crop=faces" alt="card-img">
+  <div class="card-body">
+    <h5 class="post-title"><%= link_to post.title, post_path(post) %></h5>
+    <p class="post-text"><%= post.description%></p>
+    <button type="button" class="btn btn-primary"><%= link_to 'Edit', edit_post_path(post) %></button>
+    <button type="button" class="btn btn-primary"><%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %></button>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Created by: <%= User.find(post.user_id).username %></li>
+    <li class="list-group-item">Total # of Comments: <%= post.comments.length %></li>
+    <li class="list-group-item">Votes Score: <%= post.votes.map{|vote| vote.vote_value}.inject(:+) %></li>
+    <li class="list-group-item">Place URL here: <%= post.url %></li>
+  </ul> 
+</div>
+<% end %>
 
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.title %></td>
-        <td><%= User.find(post.user_id).username %></td> 
-        <td><%= post.url %></td>
-        <td><%= post.comments.length %></td> 
-        <td><%= post.votes.map{|vote| vote.vote_value}.inject(:+) %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Post', new_post_path %>
-
+<%# <%= post.url %> 
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
