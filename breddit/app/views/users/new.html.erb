@@ -17,15 +17,13 @@
       
 
       <div class="input-block">
-        <%= form.label :username %><br>
-        <%= form.text_field :username %>
+        <%= form.text_field :username, :class => 'form-control', :placeholder => 'Username' %>
       </div>
-
+      <br>
       <div class="input-block">
-        <%= form.label :password %><br>
-        <%= form.password_field :password %>
+        <%= form.password_field :password, :class => 'form-control', :placeholder => 'Password' %>
       </div>
-
+      <br>
       <div class="input-block">
         <%= form.submit %>
       </div>
