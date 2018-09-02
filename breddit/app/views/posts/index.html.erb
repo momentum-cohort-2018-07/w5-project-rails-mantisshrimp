@@ -28,14 +28,14 @@
   <div class="card-body">
     <h5 class="post-title"><%= link_to post.title, post_path(post) %></h5>
     <p class="post-text"><%= post.description%></p>
-    <button type="button" class="btn btn-primary"><%= link_to 'Edit', edit_post_path(post) %></button>
-    <button type="button" class="btn btn-primary"><%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %></button>
+    <%= link_to 'Edit', edit_post_path(post), :class => "btn btn-outline-info" %>
+    <%= link_to "Delete", post, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-outline-danger" %>
   </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item">Created by: <%= User.find(post.user_id).username %></li>
     <li class="list-group-item">Total # of Comments: <%= post.comments.length %></li>
     <li class="list-group-item">Votes Score: <%= post.votes.map{|vote| vote.vote_value}.inject(:+) %></li>
-    <li class="list-group-item">Place URL here: <%= post.url %></li>
+    <li class="list-group-item">URL:<%= post.url %></li>
   </ul> 
 </div>
 <% end %>
