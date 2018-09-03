@@ -7,9 +7,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params.require(:user).permit(:username, :password))
     if @user.save
-      redirect_to posts_path
+      redirect_to root_path, notice: 'User was successfully created.'
     else
-      render 'new'
+      render :new
     end
   end
 
