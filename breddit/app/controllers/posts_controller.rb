@@ -10,11 +10,19 @@ class PostsController < ApplicationController
     .order('SUM(votes.vote_value) DESC')
   end
 
+  def my_posts
+    @posts = Post
+    .left_joins(:votes)
+    .group(:id)
+    .order('SUM(votes.vote_value) DESC')
+    .where(user_id: current_user.id)
+  end
+
   # GET /posts/1
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
-    @vote = Vote.where(user_id: current_user, post_id: @post.id)[0]
+    @vote = Vote.where(user_id: current_user.id, post_id: @post.id)[0]
     @votes_score = @post.votes.map{|vote| vote.vote_value}.inject(:+)
 
   end
