@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   resources :votes, only: [:create, :update]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'posts#index'
+  get 'my_posts', action: :my_posts, controller: 'posts'
 end
