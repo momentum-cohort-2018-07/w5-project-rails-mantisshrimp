@@ -4,8 +4,10 @@
   <div class="card-body">
     <h5 class="post-title"><%= link_to post.title, post_path(post) %></h5>
     <p class="post-text"><%= post.description%></p>
-    <%= link_to 'Edit', edit_post_path(post), :class => "btn btn-outline-info" %>
-    <%= link_to "Delete", post, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-outline-danger" %>
+    <% if current_user.id == post.user_id %>
+      <%= link_to 'Edit', edit_post_path(post), :class => "btn btn-outline-info" %>
+      <%= link_to "Delete", post, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-outline-danger" %>
+    <% end %>
   </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item">Created by: <%= User.find(post.user_id).username %></li>
