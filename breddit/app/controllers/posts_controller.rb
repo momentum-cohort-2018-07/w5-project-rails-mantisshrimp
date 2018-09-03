@@ -4,7 +4,10 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post
+    .left_joins(:votes)
+    .group(:id)
+    .order('SUM(votes.vote_value) DESC')
   end
 
   # GET /posts/1
@@ -36,6 +39,8 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
+        vote = Vote.new(vote_value: 0, user_id: @post.user_id, post_id: @post.id)
+        vote.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
