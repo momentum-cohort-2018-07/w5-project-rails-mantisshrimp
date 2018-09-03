@@ -1,21 +1,28 @@
-<h1 class = "input-block col-md-3">New Post</h1>
+  <header>
+    <nav class="navbar navbar-light bg-light">
+    <%= render "nav" %>
+    <%= link_to 'Back', root_path, :class => 'btn btn-outline-info' %>
+    </nav>
+  </header>
+  <br>
+
 
 <%= form_with scope: :post, url: posts_path, local: true do |form| %>
 
     <% if @post.errors.any? %>
-        <div id="error_explanation">
-            <h2>
+        <div class="alert alert-danger" role="alert">
+            <h4>
                 <%= pluralize(@post.errors.count, "error") %>
                 prohibited this post from being saved:
-            </h2>
+            </h4>
             <ul>
                 <% @post.errors.full_messages.each do |msg| %>
-                    <li><%= msg %></li>
+                    <li><h5><%= msg %></h5></li>
                 <% end %>
             </ul>
         </div>
     <% end %>
-
+<h1 class = "input-block col-md-3">New Post</h1>
   <div class="input-block col-md-3">
     <%= form.text_field :title, :class => 'form-control', :placeholder => 'Post Title' %>
   </div> <br>
@@ -27,9 +34,6 @@
   </div> <br>
   <div  class="input-block col-md-3">
   <%= form.submit "Create Post", :class => "btn btn-outline-success" %>
-  </div> <br>
-  <div  class="input-block col-md-3">
-  <%= link_to 'Back', posts_path, :class => "btn btn-outline-info" %>
   </div>
   <%= form.hidden_field :user_id, :value => current_user.id %>
 

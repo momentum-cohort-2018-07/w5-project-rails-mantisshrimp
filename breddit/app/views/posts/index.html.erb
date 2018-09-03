@@ -17,28 +17,10 @@
   
   
 <body>
-<p id="notice"><%= notice %></p>
+<p id = "notice">
+<%= notice %></p>
 
-
-
-<div class="card" style="width: 18rem;">
-<span class="float-left"></span>
-  <% @posts.each do |post| %>
-  <img class="card-img-top" src="https://imgix.ranker.com/user_node_img/76/1512068/original/mantis-shrimp-u1?w=650&q=50&fm=jpg&fit=crop&crop=faces" alt="card-img">
-  <div class="card-body">
-    <h5 class="post-title"><%= link_to post.title, post_path(post) %></h5>
-    <p class="post-text"><%= post.description%></p>
-    <%= link_to 'Edit', edit_post_path(post), :class => "btn btn-outline-info" %>
-    <%= link_to "Delete", post, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-outline-danger" %>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">Created by: <%= User.find(post.user_id).username %></li>
-    <li class="list-group-item">Total # of Comments: <%= post.comments.length %></li>
-    <li class="list-group-item">Votes Score: <%= post.votes.map{|vote| vote.vote_value}.inject(:+) %></li>
-    <li class="list-group-item">URL:<%= post.url %></li>
-  </ul> 
-</div>
-<% end %>
+<%= render "post_card" %>
 
 <%# <%= post.url %> 
 

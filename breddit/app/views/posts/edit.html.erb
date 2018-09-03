@@ -1,6 +1,12 @@
-<h1>Editing Post</h1>
+  <header>
+    <nav class="navbar navbar-light bg-light">
+    <%= render "nav" %>
+    <%= link_to 'Back', root_path, :class => 'btn btn-outline-info' %>
+    </nav>
+  </header>
+  <br>
 
-<%= render 'form', post: @post %>
+<h1 class = "col-md-3">Edit Your Post</h1>
 
 <%= form_with(model: @post, local: true) do |form| %>
 
@@ -18,28 +24,19 @@
     </div>
     <% end %>
 
-    <p>
-        <%= form.label :title %><br>
-        <%= form.text_field :title %>
-    </p>
+  <div class="input-block col-md-3">
+    <%= form.text_field :title, :class => 'form-control', :placeholder => 'Post Title' %>
+  </div> <br>
+  <div  class="input-block col-md-3">
+    <%= form.text_area :description, :class => 'form-control', :placeholder => 'Post description here' %>
+  </div> <br>
+  <div class="input-block col-md-3">
+    <%= form.text_field :url, :class => 'form-control', :placeholder => 'Post URL' %>
+  </div> <br>
+  <div  class="input-block col-md-3">
+  <%= form.submit "Update Post", :class => "btn btn-outline-success" %>
+  </div>
 
-    <p>
-        <%= form.label :description %><br>
-        <%= form.text_area :description %>
-    </p>
-   
-    <p>
-        <%= form.label :url %><br>
-        <%= form.text_field :url %>
-    </p>
 
-    <p>
-        <%= form.submit %>
-    </p>
 
-        <%= link_to 'Back', posts_path %>
-
-    <% end %>
-
-<%= link_to 'Show', @post %> |
-<%= link_to 'Back', posts_path %>
+<% end %>
