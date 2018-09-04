@@ -22,7 +22,9 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
-    @vote = Vote.where(user_id: current_user.id, post_id: @post.id)[0]
+    if current_user
+      @vote = Vote.where(user_id: current_user.id, post_id: @post.id)[0]
+    end
     @votes_score = @post.votes.map{|vote| vote.vote_value}.inject(:+)
 
   end
